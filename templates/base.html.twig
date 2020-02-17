@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <link rel="stylesheet" href="{{ asset('build/css/app.css') }}">
+        <script src="{{ asset('build/js/app.js') }}"></script>
+        <title>{% block title %}Welcome!{% endblock %}</title>
+        {% block stylesheets %}{% endblock %}
+    </head>
+    <body>
+    <div class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 bg-white border-bottom box-shadow">
+        <h5 class="my-0 mr-md-auto font-weight-normal"><span style="vertical-align: inherit;"><span style="vertical-align: inherit;">Название компании</span></span></h5>
+
+        <div class="justify-content-center">
+            <form class="form-inline my-2 my-lg-0 justify-content-center" action="{{ path('blog_search') }}" method="get">
+                <input class="form-control mr-sm-2" type="search" aria-label="Search" name="q">
+                <button class="btn btn-primary" type="submit">Найти</button>
+            </form>
+        </div>
+        <nav class="my-2 my-md-0 mr-md-3">
+            <a class="p-2 text-dark" href="#"><span style="vertical-align: inherit;"><span style="vertical-align: inherit;">Возможности </span></span></a>
+            <a class="p-2 text-dark" href="#"><span style="vertical-align: inherit;"><span style="vertical-align: inherit;">Support </span></span></a>
+        </nav>
+        {% if app.user %}
+            <a class="btn btn-outline-primary" href="{{path('logout')}}"><span style="vertical-align: inherit;"><span style="vertical-align: inherit;">выйти</span></span></a>
+        {% else %}
+            <a class="btn btn-outline-primary" href="{{path('login')}}"><span style="vertical-align: inherit;"><span style="vertical-align: inherit;">войти</span></span></a>
+        {% endif %}
+
+        <a class="btn btn-outline-primary" href="{{path('register')}}"><span style="vertical-align: inherit;"><span style="vertical-align: inherit;">зарегистрироваться</span></span></a>
+    </div>
+
+    <div class="container">
+        {% block body %}{% endblock %}
+        {% block javascripts %}{% endblock %}
+    </div>
+
+    <footer class="pt-4 my-md-5 pt-md-5 border-top"></footer>
+    </body>
+</html>
